@@ -19,13 +19,16 @@ public class MyWorld extends World
         super(600, 400, 1); 
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
     private void prepare()
     {
-        SpaceShip spaceShip = new SpaceShip();
-        addObject(spaceShip,294,189);
+
+        Hero hero = new Hero();
+        addObject(hero,112,136);
+        hero.setLocation(292,322);
     }
 }
