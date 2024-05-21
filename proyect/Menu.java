@@ -8,12 +8,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Menu extends World
 {
+<<<<<<< HEAD
     Flecha flecha = new Flecha();
     private int opcion=0;
+=======
+
+    /**
+     * Constructor for objects of class Menu.
+     * 
+     */
+>>>>>>> 9569689dacc8da2e7f43b283c964bc2d81cd5e95
     public Menu()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+<<<<<<< HEAD
         prepararMundo();
     }
     
@@ -46,3 +55,7 @@ public void act(){
 }
     }
 
+=======
+    }
+}
+>>>>>>> 9569689dacc8da2e7f43b283c964bc2d81cd5e95
