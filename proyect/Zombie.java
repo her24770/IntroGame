@@ -12,8 +12,9 @@ public class Zombie extends Actor
      * Act - do whatever the Enemies wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
+   public void act()
     {
+        // Add your action code here.
         moverHaciaHeroe();
         colision();
     }
@@ -28,7 +29,7 @@ public class Zombie extends Actor
             move(1); //Esto es para su velocidad
         }
     }
-    
+
     private void colision()
     {
         if (isTouching(Hero.class))

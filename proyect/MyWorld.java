@@ -16,11 +16,9 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-<<<<<<< HEAD
+
         super(700, 500, 1); 
-=======
-        super(800, 600, 1); 
->>>>>>> 7cefb34dcb57375a4870f8023a9196e54c44a65b
+
         prepare();
     }
     
@@ -38,6 +36,8 @@ public class MyWorld extends World
         spawnZombie();
         hero.setLocation(297,182);
         hero.setLocation(409,274);
+        addObject(hero,324,258);
+        
     }
     
     private void spawnZombie()
