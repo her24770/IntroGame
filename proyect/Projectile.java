@@ -20,6 +20,19 @@ public class Projectile extends Actor
     }
     public void act()
     {
-      move(10);  
+      move(10);
+      colisionBala();
+    }
+    private void colisionBala() //Esto elimina al zombie cuando colisionan
+    {
+        if (isTouching(Zombie.class))
+        {
+            Zombie zombie = (Zombie)getOneIntersectingObject(Zombie.class);
+            if (zombie != null)
+            {
+                getWorld().removeObject(zombie);
+                getWorld().removeObject(this); //Esto elimina la bala luego de impactar
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ public class Zombie extends Actor
         // Add your action code here.
         moverHaciaHeroe();
         colision();
+        colisionBala2();
     }
     private void moverHaciaHeroe()
     {
@@ -38,7 +39,19 @@ public class Zombie extends Actor
             if (hero != null)
             {
                 getWorld().removeObject(hero);
-                Greenfoot.stop(); // este seria para que todo se pare cuando el personaje muera
+                Greenfoot.setWorld(new Menu()); // este seria para que todo se pare cuando el personaje muera
+            }
+        }
+    }
+    
+    private void colisionBala2()
+    {
+        if (isTouching(Projectile.class))
+        {
+            Projectile projectile = (Projectile)getOneIntersectingObject(Projectile.class);
+            if (projectile != null)
+            {
+                getWorld().removeObject(projectile);
             }
         }
     }

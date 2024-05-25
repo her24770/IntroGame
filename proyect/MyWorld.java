@@ -42,7 +42,7 @@ public class MyWorld extends World
     
     private void spawnZombie()
     {
-        for (int i = 0; i < 4; i++) //Este es para el numero de enemigos que aparecen
+        for (int i = 0; i < 5; i++) //Este es para el numero de enemigos que aparecen
         {
             Zombie zombie = new Zombie();
             int side = Greenfoot.getRandomNumber(4);
