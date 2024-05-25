@@ -13,13 +13,17 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
+    Hero hero = new Hero();
+    Projectile projectile = new Projectile();
+    Counter counter = new Counter();
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
 
-        super(700, 500, 1); 
+        super(800, 650, 1); 
 
         prepare();
+        addObject(counter,100, 50);
     }
     
     /**
@@ -44,7 +48,7 @@ public class MyWorld extends World
     {
         for (int i = 0; i < 5; i++) //Este es para el numero de enemigos que aparecen
         {
-            Zombie zombie = new Zombie();
+            Zombie zombie = new Zombie(hero,projectile, counter);    
             int side = Greenfoot.getRandomNumber(4);
             int x, y;
             if (side == 0) {

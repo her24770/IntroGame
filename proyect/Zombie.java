@@ -12,11 +12,18 @@ public class Zombie extends Actor
      * Act - do whatever the Enemies wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    Projectile projectile;
+    Counter counter;
+   public Zombie(Hero hero, Projectile projectile, Counter counter)
+   {
+       this.counter = counter;
+   }
    public void act()
     {
         // Add your action code here.
         moverHaciaHeroe();
-        colision();
+        colisionHeroe();
+        colisionBala();
     }
     private void moverHaciaHeroe()
     {
@@ -30,7 +37,7 @@ public class Zombie extends Actor
         }
     }
 
-    private void colision()
+    private void colisionHeroe()
     {
         if (isTouching(Hero.class))
         {
@@ -39,6 +46,20 @@ public class Zombie extends Actor
             {
                 getWorld().removeObject(hero);
                 Greenfoot.setWorld(new Menu()); // este seria para que todo se pare cuando el personaje muera
+            }
+        }
+    }
+    
+    private void colisionBala() //Esto elimina a la bala cuando colisionan
+    {
+        if (isTouching(Projectile.class))
+        {
+            Projectile projectile = (Projectile)getOneIntersectingObject(Projectile.class);
+            if (projectile != null)
+            {
+                getWorld().removeObject(projectile);
+                getWorld().removeObject(this);//Esto elimina la bala luego de impactar
+                counter.score ++;
             }
         }
     }

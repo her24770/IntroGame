@@ -12,6 +12,7 @@ public class Projectile extends Actor
      * Act - do whatever the Projectile wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
     public Projectile()
     {
         setImage(new GreenfootImage(10, 2));
@@ -21,18 +22,6 @@ public class Projectile extends Actor
     public void act()
     {
       move(10);
-      colisionBala();
     }
-    private void colisionBala() //Esto elimina al zombie cuando colisionan
-    {
-        if (isTouching(Zombie.class))
-        {
-            Zombie zombie = (Zombie)getOneIntersectingObject(Zombie.class);
-            if (zombie != null)
-            {
-                getWorld().removeObject(zombie);
-                getWorld().removeObject(this); //Esto elimina la bala luego de impactar
-            }
-        }
-    }
+    
 }
