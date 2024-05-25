@@ -8,6 +8,4 @@ comment2.params=
 comment2.target=void\ moverHaciaHeroe()
 comment3.params=
 comment3.target=void\ colision()
-comment4.params=
-comment4.target=void\ colisionBala2()
-numComments=5
+numComments=4
