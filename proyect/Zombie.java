@@ -8,6 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Zombie extends Actor
 {
+    //private  int vel;
+    
+    //public Zombie(int vel)
+    //{
+    //    this.vel = vel;
+    //}
     /**
      * Act - do whatever the Enemies wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,7 +29,7 @@ public class Zombie extends Actor
         // Add your action code here.
         moverHaciaHeroe();
         colisionHeroe();
-        colisionBala();
+        colisionBala();//32
     }
     private void moverHaciaHeroe()
     {
@@ -45,7 +51,7 @@ public class Zombie extends Actor
             if (hero != null)
             {
                 getWorld().removeObject(hero);
-                Greenfoot.setWorld(new Menu()); // este seria para que todo se pare cuando el personaje muera
+                Greenfoot.setWorld(new Menu()); // este seria para que cambie al Menu cuando el heroe muera
             }
         }
     }
@@ -60,7 +66,12 @@ public class Zombie extends Actor
                 getWorld().removeObject(projectile);
                 getWorld().removeObject(this);//Esto elimina la bala luego de impactar
                 counter.score ++;
-            }
+                //MyWorld world = (MyWorld)getWorld();//69
+                //if (world != null) 
+                //{
+                //    world.subirScore();
+                //}
         }
     }
+}
 }

@@ -8,7 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    //private int zombieVel = 1; //velocidad inicial de zombies
+    private int numeroZombies = 3; //numero inicial de zombies
+    private int hordaTimer = 0; //el timer para la aparicion de hordas
+    private boolean hordaCompletada = false;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -37,16 +41,37 @@ public class MyWorld extends World
         addObject(hero,112,136);
         hero.setLocation(292,322);
 
-        spawnZombie();
+        spawnHorda();
         hero.setLocation(297,182);
         hero.setLocation(409,274);
         addObject(hero,324,258);
         
     }
     
-    private void spawnZombie()
+    public void act()
     {
-        for (int i = 0; i < 5; i++) //Este es para el numero de enemigos que aparecen
+        if (getObjects(Zombie.class).isEmpty() && !hordaCompletada)
+        {
+            hordaCompletada = true;
+            hordaTimer = 120; // estos son 2 segundos. 60 por cada segundo
+        }
+        
+        if (hordaCompletada && hordaTimer > 0)
+        {
+            hordaTimer--;
+        }
+        
+        if (hordaCompletada && hordaTimer == 0) 
+        {
+            numeroZombies++; // Esto que incremente el numero de zombies
+            spawnHorda();
+            hordaCompletada = false;
+        }
+    }
+    
+    private void spawnHorda()
+    {
+        for (int i = 0; i < numeroZombies; i++)
         {
             Zombie zombie = new Zombie(hero,projectile, counter);    
             int side = Greenfoot.getRandomNumber(4);
