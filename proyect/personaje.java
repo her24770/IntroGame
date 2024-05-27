@@ -1,19 +1,49 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  
 
-/**
- * Write a description of class personaje here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class personaje extends Actor
 {
-    /**
-     * Act - do whatever the personaje wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int speed = 5; // Velocidad de movimiento del personaje
+
     public void act()
     {
-        // Add your action code here.
+        movePlayer();
+        checkCollision();
+    }
+
+    private void movePlayer()
+    {
+        if (Greenfoot.isKeyDown("left")) {
+            setLocation(getX() - speed, getY());
+        }
+        if (Greenfoot.isKeyDown("right")) {
+            setLocation(getX() + speed, getY());
+        }
+        if (Greenfoot.isKeyDown("up")) {
+            setLocation(getX(), getY() - speed);
+        }
+        if (Greenfoot.isKeyDown("down")) {
+            setLocation(getX(), getY() + speed);
+        }
+    }
+
+    private void checkCollision()
+    {
+        Actor obstacle = getOneIntersectingObject(Obstacles.class);
+        if (obstacle != null) {
+            // Si el personaje colisiona con un obstáculo, revertir el movimiento
+            if (Greenfoot.isKeyDown("left")) {
+                setLocation(getX() + speed, getY());
+            }
+            if (Greenfoot.isKeyDown("right")) {
+                setLocation(getX() - speed, getY());
+            }
+            if (Greenfoot.isKeyDown("up")) {
+                setLocation(getX(), getY() + speed);
+            }
+            if (Greenfoot.isKeyDown("down")) {
+                setLocation(getX(), getY() - speed);
+            }
+        }
     }
 }
+

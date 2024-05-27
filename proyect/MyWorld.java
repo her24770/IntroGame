@@ -8,46 +8,50 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    //private int zombieVel = 1; //velocidad inicial de zombies
-    private int numeroZombies = 3; //numero inicial de zombies
-    private int hordaTimer = 0; //el timer para la aparicion de hordas
+    // Atributos para el juego
+    private int numeroZombies = 3; // número inicial de zombies
+    private int hordaTimer = 0; // el timer para la aparición de hordas
     private boolean hordaCompletada = false;
-    
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
+
+    // Atributos para el héroe y otros objetos del juego
     Hero hero = new Hero();
     Projectile projectile = new Projectile();
     Counter counter = new Counter();
+
+    // Atributo para la música de fondo
+    private GreenfootSound backgroundMusic = new GreenfootSound("flame.wav"); // Cambia "nombre_del_archivo.mp3" por el nombre de tu archivo
+
+    /**
+     * Constructor for objects of class MyWorld.
+     */
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-
+        // Crea un nuevo mundo con 800x650 celdas con un tamaño de celda de 1x1 píxeles.
         super(800, 650, 1); 
 
         prepare();
-        addObject(counter,100, 50);
+        addObject(counter, 100, 50);
+        
+        // Reproduce la música de fondo en bucle
+        backgroundMusic.playLoop();
     }
-    
+
     /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
+     * Prepara el mundo para el inicio del programa.
+     * Es decir: crea los objetos iniciales y los añade al mundo.
      */
     private void prepare()
     {
-
         Hero hero = new Hero();
-        addObject(hero,112,136);
-        hero.setLocation(292,322);
+        addObject(hero, 112, 136);
+        hero.setLocation(292, 322);
 
         spawnHorda();
-        hero.setLocation(297,182);
-        hero.setLocation(409,274);
-        addObject(hero,324,258);
-        
+        hero.setLocation(297, 182);
+        hero.setLocation(409, 274);
+        addObject(hero, 324, 258);
     }
-    
+
     public void act()
     {
         if (getObjects(Zombie.class).isEmpty() && !hordaCompletada)
@@ -63,17 +67,17 @@ public class MyWorld extends World
         
         if (hordaCompletada && hordaTimer == 0) 
         {
-            numeroZombies++; // Esto que incremente el numero de zombies
+            numeroZombies++; // Esto incrementa el número de zombies
             spawnHorda();
             hordaCompletada = false;
         }
     }
-    
+
     private void spawnHorda()
     {
         for (int i = 0; i < numeroZombies; i++)
         {
-            Zombie zombie = new Zombie(hero,projectile, counter);    
+            Zombie zombie = new Zombie(hero, projectile, counter);    
             int side = Greenfoot.getRandomNumber(4);
             int x, y;
             if (side == 0) {
@@ -92,10 +96,22 @@ public class MyWorld extends World
             }
             else
             {
-                x = getWidth() -1;
+                x = getWidth() - 1;
                 y = Greenfoot.getRandomNumber(getHeight());
             }
             addObject(zombie, x, y);
         }
+    }
+
+    // Método llamado cuando el juego se detiene
+    public void stopped()
+    {
+        backgroundMusic.stop();
+    }
+    
+    // Método llamado cuando el juego se reanuda
+    public void started()
+    {
+        backgroundMusic.playLoop();
     }
 }
