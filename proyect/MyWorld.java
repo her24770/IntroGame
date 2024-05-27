@@ -19,7 +19,7 @@ public class MyWorld extends World
     Counter counter = new Counter();
 
     // Atributo para la música de fondo
-    private GreenfootSound backgroundMusic = new GreenfootSound("flame.wav"); // Cambia "nombre_del_archivo.mp3" por el nombre de tu archivo
+    private GreenfootSound backgroundMusic = new GreenfootSound("Flames.wav"); // Cambia "nombre_del_archivo.mp3" por el nombre de tu archivo
 
     /**
      * Constructor for objects of class MyWorld.
